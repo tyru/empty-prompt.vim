@@ -27,13 +27,13 @@ autocmd VimEnter * ++once call s:empty_prompt_mappings()
 
 ## Customize
 
-`g:empty_prompt#pattern` (default: `&shell =~# 'sh$' ? '\$ $' : '> $'`)
+`g:empty_prompt#pattern` (default: `&shell =~# 'sh$' ? '\$ $' : '>\s*$'`)
 
 If current line on terminal window matches this pattern, fire given mapping.
 
 Default is:
 * current line ends with `$ ` (`&shell` ends with `sh` (bash/zsh/...) like Unix environment)
-* current line ends with `> ` (other platforms like Windows)
+* current line ends with `>` (otherwise, cmd.exe/powershell like Windows)
 
 If the default value does not fit your environment, please consider customize the value.
 

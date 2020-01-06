@@ -1,7 +1,7 @@
 scriptversion 4
 
 let g:empty_prompt#pattern =
-  \ get(g:, 'empty_prompt#pattern', &shell =~# 'sh$' ? '\$ $' : '> $')
+  \ get(g:, 'empty_prompt#pattern', &shell =~# 'sh$' ? '\$ $' : '>\s*$')
 
 function! empty_prompt#is_empty() abort
   return term_getline(bufnr(''), '.') =~# g:empty_prompt#pattern
