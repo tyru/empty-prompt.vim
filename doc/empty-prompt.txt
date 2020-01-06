@@ -1,0 +1,77 @@
+*empty-prompt.txt*		Add mappings only when shell prompt is empty
+
+Author: tyru <tyru.exe@gmail.com>
+Licence: GPL-3 or any later versions
+Documentation author: ujihisa <ujihisa@gmail.com>
+
+==============================================================================
+CONTENTS					*empty-prompt-contents*
+
+INTRODUCTION			|empty-prompt-introduction|
+SETTINGS			|empty-prompt-settings|
+INTERFACE			|empty-prompt-interface|
+
+==============================================================================
+INTRODUCTION					*empty-prompt-introduction*
+
+Requirements:
+* Vim 8.2+
+
+						*empty-prompt-synopsis*
+After installing this plugin, write this to your vimrc.
+
+>
+	function! s:empty_prompt_mappings() abort
+	  " If current line is empty prompt ...
+	  
+	  " : works as <C-w>:
+	  call empty_prompt#map(#{lhs: ':', rhs: '<C-w>:'})
+	  " <Esc> works as <C-w>N
+	  call empty_prompt#map(#{lhs: '<Esc>', rhs: '<C-w>N'})
+	  
+	  " ... Add more mappings you like
+	endfunction
+	
+	autocmd VimEnter * ++once call s:empty_prompt_mappings()
+<
+
+==============================================================================
+SETTINGS					*empty-prompt-settings*
+						*g:empty_prompt#pattern*
+
+
+g:empty_prompt#pattern (default: "&shell =~# 'sh$' ? '\$ $' : '>\s*$'")
+
+If the current line on the terminal window matches this pattern, it fires the
+given mapping.
+
+Default is either:
+* current line ends with "$ " ("&shell" ends with "sh" (bash/zsh/...),
+  like Unix environment), or
+* current line ends with ">" (otherwise, cmd.exe/powershell like Windows)
+
+If the default value does not fit your environment, please consider customize
+the value.
+
+==============================================================================
+INTERFACE					*empty-prompt-interface*
+						*empty_prompt#map()*
+						*empty_prompt#is_empty()*
+
+empty_prompt#map({'lhs': <string>, 'rhs': <string> [, 'fallback': <string>]})
+
+>
+	call empty_prompt#map(#{lhs: '<Esc>', rhs: "<C-w>N"})
+<
+
+	This will be expanded to:
+
+>
+	tnoremap <expr> {lhs} empty_prompt#is_empty() ? {rhs} : {fallback}
+<
+
+	"{fallback}" is optional.
+	Default "{fallback}" is same as "{lhs}"
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
