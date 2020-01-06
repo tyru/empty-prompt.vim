@@ -1,6 +1,6 @@
 # empty-prompt.vim
 
-Mapping plugin to add a mappings only when shell prompt is empty
+Vim plugin to add mappings only when shell prompt is empty
 
 ## Requirements
 
