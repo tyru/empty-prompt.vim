@@ -1,6 +1,6 @@
 # empty-prompt.vim
 
-Mapping library to add a mappings only when shell prompt is empty
+Mapping plugin to add a mappings only when shell prompt is empty
 
 ## Requirements
 
@@ -30,7 +30,9 @@ Default is:
 
 If the default value does not fit your environment, please consider customize the value.
 
-## `empty_prompt#map({'lhs': <string>, 'rhs': <string> [, 'fallback': <string>]})`
+## API
+
+### `empty_prompt#map({'lhs': <string>, 'rhs': <string> [, 'fallback': <string>]})`
 
 ```vim
 call empty_prompt#map(#{lhs: '<Esc>', rhs: "<C-w>N"})
