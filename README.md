@@ -12,8 +12,15 @@ After installing this plugin, write this to your vimrc.
 
 ```vim
 function! s:empty_prompt_mappings() abort
-  call empty_prompt#map(#{lhs: ':', rhs: "<C-w>:"})
-  call empty_prompt#map(#{lhs: '<Esc>', rhs: "<C-w>N"})
+  " If current line is empty prompt ...
+  
+  " : works as <C-w>:
+  call empty_prompt#map(#{lhs: ':', rhs: '<C-w>:'})
+  " <Esc> works as <C-w>N
+  call empty_prompt#map(#{lhs: '<Esc>', rhs: '<C-w>N'})
+  
+  " ... Add more mappings you like
+  
 endfunction
 autocmd VimEnter * ++once call s:empty_prompt_mappings()
 ```
