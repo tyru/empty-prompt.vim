@@ -4,7 +4,8 @@ let g:empty_prompt#pattern =
   \ get(g:, 'empty_prompt#pattern', &shell =~# 'sh$' ? '\$ $' : '>\s*$')
 
 function! empty_prompt#is_empty() abort
-  return term_getline(bufnr(''), '.') =~# g:empty_prompt#pattern
+  let line = term_getline(bufnr(''), '.')
+  return line !=# '' && line =~# g:empty_prompt#pattern
 endfunction
 
 function! empty_prompt#map(opt) abort
